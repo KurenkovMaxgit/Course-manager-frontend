@@ -1,0 +1,44 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.layout-container {
+  height: calc(100% - 64px);
+  background-color: var(--mat-sys-surface);
+}
+
+.layout-toolbar {
+  background-color: var(--mat-sys-secondary-container);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.example-sidenav {
+  width: 200px;
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+}
+
+.content {
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  list-style: disc;
+  padding: 0;
+  li {
+    &:hover {
+      color: var(--mat-sys-on-secondary-container);
+    }
+  }
+}

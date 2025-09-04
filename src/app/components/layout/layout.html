@@ -1,0 +1,29 @@
+<mat-toolbar class="layout-toolbar">
+  <button type="button" (click)="drawer.toggle()" mat-icon-button class="icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="spacer"></span>
+  <button mat-icon-button class="icon favorite-icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="icon">
+    <mat-icon>person</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="layout-container">
+  <mat-sidenav #drawer mode="side" class="example-sidenav">
+    <nav>
+      <ul>
+        <li routerLink="/teachers"><h3>Teachers</h3></li>
+        <li routerLink="/groups"><h3>Groups</h3></li>
+        <li routerLink="/workloads"><h3>Workloads</h3></li>
+      </ul>
+    </nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="toolbar">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
