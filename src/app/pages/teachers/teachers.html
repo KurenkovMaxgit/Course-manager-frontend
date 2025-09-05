@@ -1,7 +1,6 @@
 <app-table
+  [model]="'teacher'"
   [columnLabels]="['Name', 'Surname', 'Middle Name', 'Phone', 'Experience']"
   [inputColumns]="['name', 'surname', 'middleName', 'phone', 'experience']"
-  [apiUrl]="'http://localhost:3000/api/teacher'"
 ></app-table>
 
-<router-outlet />

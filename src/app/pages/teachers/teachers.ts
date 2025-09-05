@@ -4,7 +4,7 @@ import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-teachers',
-  imports: [Table, RouterOutlet],
+  imports: [Table],
   standalone: true,
   templateUrl: './teachers.html',
   styleUrl: './teachers.scss',
