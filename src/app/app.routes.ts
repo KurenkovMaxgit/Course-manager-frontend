@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
   Routes,
 } from '@angular/router';
-import { AuthService } from './sevrice/auth-service';
+import { AuthService } from './services/auth-service';
 
 export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -25,7 +25,7 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'teachers',
+    path: 'teacher',
     canActivate: [authGuard],
     loadComponent: async () => {
       const m = await import('./pages/teachers/teachers');
@@ -35,33 +35,65 @@ export const routes: Routes = [
       {
         path: 'new',
         loadComponent: async () => {
-          const m = await import('./components/form/form');
-          return m.Form;
+          const m = await import('./components/inputs/teacher-inputs/teacher-inputs');
+          return m.TeacherInputs;
         },
       },
       {
         path: ':id',
         loadComponent: async () => {
-          const m = await import('./components/form/form');
-          return m.Form;
+          const m = await import('./components/inputs/teacher-inputs/teacher-inputs');
+          return m.TeacherInputs;
         },
       },
     ],
   },
   {
-    path: 'groups',
+    path: 'group',
     canActivate: [authGuard],
     loadComponent: async () => {
       const m = await import('./pages/groups/groups');
       return m.Groups;
     },
+    children: [
+      {
+        path: 'new',
+        loadComponent: async () => {
+          const m = await import('./components/inputs/group-inputs/group-inputs');
+          return m.GroupInputs;
+        },
+      },
+      {
+        path: ':id',
+        loadComponent: async () => {
+          const m = await import('./components/inputs/group-inputs/group-inputs');
+          return m.GroupInputs;
+        },
+      },
+    ],
   },
   {
-    path: 'workloads',
+    path: 'workload',
     canActivate: [authGuard],
     loadComponent: async () => {
       const m = await import('./pages/workloads/workloads');
       return m.Workloads;
     },
+    children: [
+      {
+        path: 'new',
+        loadComponent: async () => {
+          const m = await import('./components/inputs/workload-inputs/workload-inputs');
+          return m.WorkloadInputs;
+        },
+      },
+      {
+        path: ':id',
+        loadComponent: async () => {
+          const m = await import('./components/inputs/workload-inputs/workload-inputs');
+          return m.WorkloadInputs;
+        },
+      },
+    ],
   },
 ];
