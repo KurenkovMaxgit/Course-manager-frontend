@@ -1,24 +1,24 @@
-<app-form [model]="model">
+<app-form [model]="model" [validated]="validated">
   <form [formGroup]="form">
     <mat-form-field class="input">
       <mat-label>Name</mat-label>
-      <input matInput formControlName="name" />
+      <input matInput formControlName="name" required />
     </mat-form-field>
     <mat-form-field class="input">
       <mat-label>Surname</mat-label>
-      <input matInput formControlName="surname" />
+      <input matInput formControlName="surname" required />
     </mat-form-field>
     <mat-form-field class="input">
       <mat-label>Middle name</mat-label>
-      <input matInput formControlName="middleName" />
+      <input matInput formControlName="middleName" required />
     </mat-form-field>
     <mat-form-field class="input">
       <mat-label>Phone</mat-label>
-      <input matInput formControlName="phone" />
+      <input matInput formControlName="phone" required />
     </mat-form-field>
     <mat-form-field class="input">
       <mat-label>Experience</mat-label>
-      <textarea matInput formControlName="experience"></textarea>
+      <textarea matInput formControlName="experience" required></textarea>
     </mat-form-field>
   </form>
 </app-form>

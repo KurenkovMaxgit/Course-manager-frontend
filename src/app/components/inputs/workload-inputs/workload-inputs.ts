@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './workload-inputs.scss',
 })
 export class WorkloadInputs {
+  validated = signal(true);
   model = 'workload';
   http = inject(HttpClient);
   private activatedRoute = inject(ActivatedRoute);

@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { Form } from '../../form/form';
 import { HttpClient } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Group } from '../../../models/group.model';
 
@@ -13,15 +13,25 @@ import { Group } from '../../../models/group.model';
   styleUrl: './group-inputs.scss',
 })
 export class GroupInputs {
+  validated = signal(true);
   model = 'group';
   http = inject(HttpClient);
   private activatedRoute = inject(ActivatedRoute);
   id = '';
   group = signal<Group | null>(null);
   form = new FormGroup({
-    faculty: new FormControl(this.group()?.faculty || ''),
-    specialty: new FormControl(this.group()?.specialty || ''),
-    studentCount: new FormControl(this.group()?.studentCount || 0),
+    faculty: new FormControl(this.group()?.faculty, [
+      Validators.required,
+      Validators.maxLength(100),
+    ]),
+    specialty: new FormControl(this.group()?.specialty, [
+      Validators.required,
+      Validators.maxLength(100),
+    ]),
+    studentCount: new FormControl(this.group()?.studentCount, [
+      Validators.required,
+      Validators.maxLength(4),
+    ]),
   });
 
   constructor(private router: Router) {

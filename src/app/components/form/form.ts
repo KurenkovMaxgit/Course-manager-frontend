@@ -4,12 +4,14 @@ import {
   Component,
   ContentChild,
   inject,
+  input,
   Input,
   OnInit,
   Optional,
   signal,
   TemplateRef,
   viewChild,
+  WritableSignal,
 } from '@angular/core';
 import {
   MatDialog,
@@ -34,8 +36,12 @@ export class Form implements OnInit {
   http = inject(HttpClient);
   id = signal('');
   isNew = false;
+
+  @Input() validated!: WritableSignal<boolean>;
   @Input() model = '';
-  @ContentChild(FormGroupDirective) formGroupDir?: FormGroupDirective;
+
+  @ContentChild(FormGroupDirective)
+  formGroupDir?: FormGroupDirective;
   private activatedRoute = inject(ActivatedRoute);
 
   constructor(
@@ -65,17 +71,21 @@ export class Form implements OnInit {
 
   Submit() {
     const form = this.formGroupDir?.form;
-    if (form?.valid) {
-      if (this.isNew) {
-        this.http.post(`http://localhost:3000/api/${this.model}`, form.value).subscribe({
-          next: (res) => console.log('Success:', res),
-          error: (err) => console.error('Error:', err),
-        });
-      } else
-        this.http.put(`http://localhost:3000/api/${this.model}/${this.id}`, form.value).subscribe({
-          next: (res) => console.log('Success:', res),
-          error: (err) => console.error('Error:', err),
-        });
-    }
+    if (this.validated()) {
+      if (form?.valid) {
+        if (this.isNew) {
+          this.http.post(`http://localhost:3000/api/${this.model}`, form.value).subscribe({
+            next: (res) => console.log('Success:', res),
+            error: (err) => console.error('Error:', err),
+          });
+        } else
+          this.http
+            .put(`http://localhost:3000/api/${this.model}/${this.id}`, form.value)
+            .subscribe({
+              next: (res) => console.log('Success:', res),
+              error: (err) => console.error('Error:', err),
+            });
+      }
+    } else console.log('HUBSBUBA');
   }
 }
