@@ -1,0 +1,24 @@
+<app-form [model]="model">
+  <form [formGroup]="form">
+    <mat-form-field class="input">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Surname</mat-label>
+      <input matInput formControlName="surname" />
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Middle name</mat-label>
+      <input matInput formControlName="middleName" />
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" />
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Experience</mat-label>
+      <textarea matInput formControlName="experience"></textarea>
+    </mat-form-field>
+  </form>
+</app-form>
