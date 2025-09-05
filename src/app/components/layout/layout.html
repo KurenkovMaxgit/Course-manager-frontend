@@ -14,13 +14,17 @@
 
 <mat-sidenav-container class="layout-container">
   <mat-sidenav #drawer mode="side" class="example-sidenav">
-    <nav>
-      <ul>
-        <li routerLink="/teachers"><h3>Teachers</h3></li>
-        <li routerLink="/groups"><h3>Groups</h3></li>
-        <li routerLink="/workloads"><h3>Workloads</h3></li>
-      </ul>
-    </nav>
+    <mat-nav-list>
+      <nav>
+        <ul>
+          <li routerLink="/teacher">
+            <a mat-list-item><h4>Teacher</h4></a>
+          </li>
+          <li routerLink="/group"><a mat-list-item><h4>Groups</h4></a></li>
+          <li routerLink="/workload"><a mat-list-item><h4>Workloads</h4></a></li>
+        </ul>
+      </nav>
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content class="toolbar">

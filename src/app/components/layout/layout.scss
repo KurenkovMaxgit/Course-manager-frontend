@@ -34,11 +34,10 @@ nav {
 }
 
 ul {
-  list-style: disc;
+  list-style: none;
   padding: 0;
-  li {
-    &:hover {
-      color: var(--mat-sys-on-secondary-container);
-    }
-  }
+}
+
+h4 {
+  color: var(--mat-sys-on-primary);
 }

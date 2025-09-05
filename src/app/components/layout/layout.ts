@@ -8,6 +8,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { MatSidenavContainer } from '@angular/material/sidenav';
 import { MatSidenavContent } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
+import { MatList, MatListItem, MatNavList } from '@angular/material/list';
 @Component({
   selector: 'app-layout',
   imports: [
@@ -19,6 +20,8 @@ import { RouterOutlet } from '@angular/router';
     MatSidenavContent,
     RouterOutlet,
     RouterLink,
+    MatListItem,
+    MatNavList,
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',
