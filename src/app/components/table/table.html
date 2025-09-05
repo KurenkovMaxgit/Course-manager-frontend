@@ -23,16 +23,13 @@
         <td mat-cell *matCellDef="let row">{{ row[column] }}</td>
       </ng-container>
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef mat-header>Actions</th>
-        <button mat-icon-button color="primary" (click)="addNew()">
-          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-        </button>
+        <th mat-header-cell *matHeaderCellDef mat-header>
+          <button mat-icon-button color="primary" (click)="addNew()">
+            <mat-icon aria-label="Add">add2</mat-icon>
+          </button>
+        </th>
         <td mat-cell *matCellDef="let row; let i = index">
-          <button
-            mat-icon-button
-            color="accent"
-            (click)="startEdit(i, row.id, row.title, row.state, row.url, row.created_at)"
-          >
+          <button mat-icon-button color="accent" (click)="startEdit(i)">
             <mat-icon aria-label="Edit">edit</mat-icon>
           </button>
 
@@ -52,3 +49,4 @@
     aria-label="Select page of items"
   ></mat-paginator>
 </div>
+<router-outlet />
