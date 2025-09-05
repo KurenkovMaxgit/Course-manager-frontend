@@ -1,3 +1,10 @@
-{{ title() }}
-<p>form works!</p>
-{{ id() }}
+<ng-template>
+  <h2 mat-dialog-title>@if (isNew){Add new} @else {Edit} {{ model }}</h2>
+  <mat-dialog-content>
+    <ng-content></ng-content>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button matButton mat-dialog-close>Cancel</button>
+    <button matButton mat-dialog-close cdkFocusInitial (click)="Submit()">Submit</button>
+  </mat-dialog-actions>
+</ng-template>
