@@ -1,0 +1,8 @@
+<app-form [model]="model" [validated]="validated">
+  <form [formGroup]="form">
+    <mat-form-field class="input">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required />
+    </mat-form-field>
+  </form>
+</app-form>
