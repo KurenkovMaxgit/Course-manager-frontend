@@ -4,11 +4,9 @@
   </button>
   <span>My App</span>
   <span class="spacer"></span>
-  <button mat-icon-button class="icon favorite-icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
+
   <button mat-icon-button class="icon">
-    <mat-icon>person</mat-icon>
+    <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
 
@@ -20,8 +18,15 @@
           <li routerLink="/teacher">
             <a mat-list-item><h4>Teacher</h4></a>
           </li>
-          <li routerLink="/group"><a mat-list-item><h4>Groups</h4></a></li>
-          <li routerLink="/workload"><a mat-list-item><h4>Workloads</h4></a></li>
+          <li routerLink="/group">
+            <a mat-list-item><h4>Groups</h4></a>
+          </li>
+          <li routerLink="/workload">
+            <a mat-list-item><h4>Workloads</h4></a>
+          </li>
+          <li routerLink="/subject">
+            <a mat-list-item><h4>Subjects</h4></a>
+          </li>
         </ul>
       </nav>
     </mat-nav-list>
