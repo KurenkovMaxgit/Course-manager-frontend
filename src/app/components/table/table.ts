@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild, AfterViewInit, inject, Input } from '@angular/core';
+import { Component, ViewChild, inject, Input } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { merge, Observable, of as observableOf, Subject } from 'rxjs';
@@ -9,10 +9,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -66,7 +66,6 @@ export class Table<T extends HasId> {
         takeUntil(this.destroy$)
       )
       .subscribe(() => {
-        // Check if we’re *not* on the dialog route anymore
         if (this.router.url.endsWith(`/${this.model}`)) {
           this.renderTable();
         }

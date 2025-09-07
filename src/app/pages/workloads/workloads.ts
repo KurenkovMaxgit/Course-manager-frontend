@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { Table } from '../../components/table/table';
-import { RouterOutlet } from '@angular/router';
+import { WorkloadTable } from '../../components/workload-table/workload-table';
 
 @Component({
   selector: 'app-workloads',
-  imports: [Table],
+  imports: [WorkloadTable],
   templateUrl: './workloads.html',
   styleUrl: './workloads.scss',
 })
