@@ -1,0 +1,102 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-select-container">
+    <mat-form-field class="input">
+      <mat-label>Teacher</mat-label>
+      <mat-select [formControl]="teacher">
+        <mat-option>-- None --</mat-option>
+        @for(teacher of teachers() ?? []; track $index){
+        <mat-option [value]="teacher._id"> {{ teacher.surname }} {{ teacher.name }} </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Group</mat-label>
+      <mat-select [formControl]="group">
+        <mat-option>-- None --</mat-option>
+        @for(group of groups() ?? []; track $index){
+        <mat-option [value]="group._id"> {{ group.faculty }} </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Subject</mat-label>
+      <mat-select [formControl]="subject">
+        <mat-option>-- None --</mat-option>
+        @for(subject of subjects() ?? []; track $index){
+        <mat-option [value]="subject._id"> {{ subject.name }} </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Type</mat-label>
+      <mat-select [formControl]="type">
+        <mat-option>-- None --</mat-option>
+        @for(type of types() ?? []; track $index){
+        <mat-option [value]="type._id"> {{ type.name }} </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  @if (isLoadingResults || isRateLimitReached) {
+  <div class="example-loading-shade">
+    @if (isLoadingResults) {
+    <mat-spinner />
+    } @else {
+    <div class="example-rate-limit-reached">
+      API rate limit has been reached. Please try again later.
+    </div>
+    }
+  </div>
+  }
+
+  <div class="example-table-container">
+    <table
+      mat-table
+      [dataSource]="data"
+      class="example-table"
+      matSort
+      matSortActive="created"
+      matSortDisableClear
+      matSortDirection="desc"
+    >
+      @for (column of inputColumns; track $index) {
+      <ng-container [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ columnLabels[$index] || column }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row[column] }}
+        </td>
+      </ng-container>
+      }
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-header>
+          <button mat-icon-button color="primary" (click)="addNew()">
+            <mat-icon aria-label="Add">add2</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let row; let i = index">
+          <button mat-icon-button color="accent" (click)="startEdit(i)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color="accent" (click)="deleteItem(i)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <mat-paginator
+    [length]="resultsLength"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page of items"
+  ></mat-paginator>
+</div>
+<router-outlet />
