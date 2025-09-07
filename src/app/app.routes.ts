@@ -19,9 +19,13 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
+    redirectTo: 'teacher',
+  },
+  {
+    path: 'login',
     loadComponent: async () => {
-      const m = await import('./pages/home/home');
-      return m.Home;
+      const m = await import('./pages/login/login');
+      return m.Login;
     },
   },
   {
@@ -34,6 +38,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'new',
+        canActivate: [authGuard],
         loadComponent: async () => {
           const m = await import('./components/inputs/teacher-inputs/teacher-inputs');
           return m.TeacherInputs;
@@ -41,6 +46,7 @@ export const routes: Routes = [
       },
       {
         path: ':id',
+        canActivate: [authGuard],
         loadComponent: async () => {
           const m = await import('./components/inputs/teacher-inputs/teacher-inputs');
           return m.TeacherInputs;
@@ -58,6 +64,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'new',
+        canActivate: [authGuard],
         loadComponent: async () => {
           const m = await import('./components/inputs/group-inputs/group-inputs');
           return m.GroupInputs;
@@ -65,6 +72,7 @@ export const routes: Routes = [
       },
       {
         path: ':id',
+        canActivate: [authGuard],
         loadComponent: async () => {
           const m = await import('./components/inputs/group-inputs/group-inputs');
           return m.GroupInputs;
@@ -82,6 +90,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'new',
+        canActivate: [authGuard],
         loadComponent: async () => {
           const m = await import('./components/inputs/workload-inputs/workload-inputs');
           return m.WorkloadInputs;
@@ -89,9 +98,36 @@ export const routes: Routes = [
       },
       {
         path: ':id',
+        canActivate: [authGuard],
         loadComponent: async () => {
           const m = await import('./components/inputs/workload-inputs/workload-inputs');
           return m.WorkloadInputs;
+        },
+      },
+    ],
+  },
+  {
+    path: 'subject',
+    canActivate: [authGuard],
+    loadComponent: async () => {
+      const m = await import('./pages/subjects/subjects');
+      return m.Subjects;
+    },
+    children: [
+      {
+        path: 'new',
+        canActivate: [authGuard],
+        loadComponent: async () => {
+          const m = await import('./components/inputs/subject-inputs/subject-inputs');
+          return m.SubjectInputs;
+        },
+      },
+      {
+        path: ':id',
+        canActivate: [authGuard],
+        loadComponent: async () => {
+          const m = await import('./components/inputs/subject-inputs/subject-inputs');
+          return m.SubjectInputs;
         },
       },
     ],
