@@ -1,4 +1,4 @@
-export type LessonType = {
+export type Subject = {
   _id?: string;
   name: string;
 };
