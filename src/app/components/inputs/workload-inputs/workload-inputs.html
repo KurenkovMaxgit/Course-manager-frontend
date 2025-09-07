@@ -3,29 +3,33 @@
     <mat-form-field class="input">
       <mat-label>Teacher</mat-label>
       <mat-select formControlName="teacher">
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
+        @for(teacher of teachers() ?? []; track $index){
+        <mat-option [value]="teacher._id"> {{ teacher.surname }} {{ teacher.name }} </mat-option>
+        }
       </mat-select>
     </mat-form-field>
     <mat-form-field class="input">
       <mat-label>Group</mat-label>
       <mat-select formControlName="group">
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
+        @for(group of groups() ?? []; track $index){
+        <mat-option [value]="group._id"> {{ group.faculty }} </mat-option>
+        }
       </mat-select>
     </mat-form-field>
     <mat-form-field class="input">
       <mat-label>Subject</mat-label>
       <mat-select formControlName="subject">
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
+        @for(subject of subjects() ?? []; track $index){
+        <mat-option [value]="subject._id"> {{ subject.name }} </mat-option>
+        }
       </mat-select>
     </mat-form-field>
     <mat-form-field class="input">
       <mat-label>Type</mat-label>
       <mat-select formControlName="type">
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
+        @for(type of types() ?? []; track $index){
+        <mat-option [value]="type._id"> {{ type.name }} </mat-option>
+        }
       </mat-select>
     </mat-form-field>
     <mat-form-field class="input">
