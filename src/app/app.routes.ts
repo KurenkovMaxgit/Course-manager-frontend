@@ -17,11 +17,6 @@ export const authGuard: CanActivateFn = (
 
 export const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'teacher',
-  },
-  {
     path: 'login',
     loadComponent: async () => {
       const m = await import('./pages/login/login');
@@ -29,106 +24,116 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'teacher',
+    path: '',
     canActivate: [authGuard],
     loadComponent: async () => {
-      const m = await import('./pages/teachers/teachers');
-      return m.Teachers;
+      const m = await import('./components/layout/layout');
+      return m.Layout;
     },
     children: [
       {
-        path: 'new',
+        path: 'teacher',
         canActivate: [authGuard],
         loadComponent: async () => {
-          const m = await import('./components/inputs/teacher-inputs/teacher-inputs');
-          return m.TeacherInputs;
+          const m = await import('./pages/teachers/teachers');
+          return m.Teachers;
         },
+        children: [
+          {
+            path: 'new',
+            canActivate: [authGuard],
+            loadComponent: async () => {
+              const m = await import('./components/inputs/teacher-inputs/teacher-inputs');
+              return m.TeacherInputs;
+            },
+          },
+          {
+            path: ':id',
+            canActivate: [authGuard],
+            loadComponent: async () => {
+              const m = await import('./components/inputs/teacher-inputs/teacher-inputs');
+              return m.TeacherInputs;
+            },
+          },
+        ],
       },
       {
-        path: ':id',
+        path: 'group',
         canActivate: [authGuard],
         loadComponent: async () => {
-          const m = await import('./components/inputs/teacher-inputs/teacher-inputs');
-          return m.TeacherInputs;
+          const m = await import('./pages/groups/groups');
+          return m.Groups;
         },
-      },
-    ],
-  },
-  {
-    path: 'group',
-    canActivate: [authGuard],
-    loadComponent: async () => {
-      const m = await import('./pages/groups/groups');
-      return m.Groups;
-    },
-    children: [
-      {
-        path: 'new',
-        canActivate: [authGuard],
-        loadComponent: async () => {
-          const m = await import('./components/inputs/group-inputs/group-inputs');
-          return m.GroupInputs;
-        },
-      },
-      {
-        path: ':id',
-        canActivate: [authGuard],
-        loadComponent: async () => {
-          const m = await import('./components/inputs/group-inputs/group-inputs');
-          return m.GroupInputs;
-        },
-      },
-    ],
-  },
-  {
-    path: 'workload',
-    canActivate: [authGuard],
-    loadComponent: async () => {
-      const m = await import('./pages/workloads/workloads');
-      return m.Workloads;
-    },
-    children: [
-      {
-        path: 'new',
-        canActivate: [authGuard],
-        loadComponent: async () => {
-          const m = await import('./components/inputs/workload-inputs/workload-inputs');
-          return m.WorkloadInputs;
-        },
+        children: [
+          {
+            path: 'new',
+            canActivate: [authGuard],
+            loadComponent: async () => {
+              const m = await import('./components/inputs/group-inputs/group-inputs');
+              return m.GroupInputs;
+            },
+          },
+          {
+            path: ':id',
+            canActivate: [authGuard],
+            loadComponent: async () => {
+              const m = await import('./components/inputs/group-inputs/group-inputs');
+              return m.GroupInputs;
+            },
+          },
+        ],
       },
       {
-        path: ':id',
+        path: 'workload',
         canActivate: [authGuard],
         loadComponent: async () => {
-          const m = await import('./components/inputs/workload-inputs/workload-inputs');
-          return m.WorkloadInputs;
+          const m = await import('./pages/workloads/workloads');
+          return m.Workloads;
         },
+        children: [
+          {
+            path: 'new',
+            canActivate: [authGuard],
+            loadComponent: async () => {
+              const m = await import('./components/inputs/workload-inputs/workload-inputs');
+              return m.WorkloadInputs;
+            },
+          },
+          {
+            path: ':id',
+            canActivate: [authGuard],
+            loadComponent: async () => {
+              const m = await import('./components/inputs/workload-inputs/workload-inputs');
+              return m.WorkloadInputs;
+            },
+          },
+        ],
       },
-    ],
-  },
-  {
-    path: 'subject',
-    canActivate: [authGuard],
-    loadComponent: async () => {
-      const m = await import('./pages/subjects/subjects');
-      return m.Subjects;
-    },
-    children: [
       {
-        path: 'new',
+        path: 'subject',
         canActivate: [authGuard],
         loadComponent: async () => {
-          const m = await import('./components/inputs/subject-inputs/subject-inputs');
-          return m.SubjectInputs;
+          const m = await import('./pages/subjects/subjects');
+          return m.Subjects;
         },
-      },
-      {
-        path: ':id',
-        canActivate: [authGuard],
-        loadComponent: async () => {
-          const m = await import('./components/inputs/subject-inputs/subject-inputs');
-          return m.SubjectInputs;
-        },
+        children: [
+          {
+            path: 'new',
+            canActivate: [authGuard],
+            loadComponent: async () => {
+              const m = await import('./components/inputs/subject-inputs/subject-inputs');
+              return m.SubjectInputs;
+            },
+          },
+          {
+            path: ':id',
+            canActivate: [authGuard],
+            loadComponent: async () => {
+              const m = await import('./components/inputs/subject-inputs/subject-inputs');
+              return m.SubjectInputs;
+            },
+          },
+        ],
       },
     ],
   },

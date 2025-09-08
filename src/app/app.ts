@@ -1,13 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { AuthService } from './services/auth-service';
 import { RouterOutlet } from '@angular/router';
-import { Layout } from './components/layout/layout';
 
 @Component({
   selector: 'app-root',
-  imports: [Layout],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('cource-manager');
+  protected readonly title = 'course-manager';
+  token = inject(AuthService).token;
 }

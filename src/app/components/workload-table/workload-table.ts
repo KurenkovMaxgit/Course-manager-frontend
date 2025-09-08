@@ -38,7 +38,7 @@ import { Subject as courseSubject } from '../../models/subject.model';
     MatDialogModule,
     RouterOutlet,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './workload-table.html',
   styleUrls: ['./workload-table.scss'],
@@ -95,7 +95,6 @@ export class WorkloadTable {
     )
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        // при зміні будь-якого фільтру — повертаємося на першу сторінку
         this.paginator.pageIndex = 0;
         this.renderTable();
       });
@@ -147,7 +146,6 @@ export class WorkloadTable {
   ngAfterViewInit() {
     if (!this.apiUrl) throw new Error('apiUrl input is required!');
 
-    // Об'єднуємо всі стріми: сортування, пагінатор, зміни фільтрів
     merge(
       this.sort.sortChange,
       this.paginator.page,
@@ -157,10 +155,9 @@ export class WorkloadTable {
       this.type.valueChanges
     )
       .pipe(
-        startWith({}), // щоб відразу завантажити дані
+        startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          // Повертаємо на першу сторінку при зміні фільтра
           if (this.teacher.dirty || this.group.dirty || this.subject.dirty || this.type.dirty) {
             this.paginator.pageIndex = 0;
           }
@@ -188,7 +185,7 @@ export class WorkloadTable {
             (w): WorkloadTableRow => ({
               _id: w._id,
               teacher: `${w.teacher.surname} ${w.teacher.name}`,
-              group: w.group.faculty,
+              group: `${w.group.specialty}, ${w.group.faculty}`,
               subject: w.subject.name,
               type: w.type.name,
               hours: w.hours,
