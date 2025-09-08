@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { Form } from '../../form/form';
+import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -20,11 +21,11 @@ export class GroupInputs {
   id = '';
   group = signal<Group | null>(null);
   form = new FormGroup({
-    faculty: new FormControl(this.group()?.faculty, [
+    specialty: new FormControl(this.group()?.specialty, [
       Validators.required,
       Validators.maxLength(100),
     ]),
-    specialty: new FormControl(this.group()?.specialty, [
+    faculty: new FormControl(this.group()?.faculty, [
       Validators.required,
       Validators.maxLength(100),
     ]),
@@ -34,7 +35,7 @@ export class GroupInputs {
     ]),
   });
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private location: Location) {
     this.activatedRoute.params.subscribe((params) => {
       this.id = params['id'];
     });
@@ -48,12 +49,15 @@ export class GroupInputs {
       next: (res) => {
         this.group.set(res);
         this.form.patchValue({
-          faculty: res.faculty,
           specialty: res.specialty,
+          faculty: res.faculty,
           studentCount: res.studentCount,
         });
       },
-      error: (err) => console.error('Error:', err),
+      error: (err) => {
+        console.error('Error:', err);
+        this.location.back();
+      },
     });
   }
 }

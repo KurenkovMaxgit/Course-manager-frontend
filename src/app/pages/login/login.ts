@@ -5,6 +5,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,8 @@ import { Router } from '@angular/router';
 })
 export class Login {
   private router = inject(Router);
+  private http = inject(HttpClient);
+  private auth = inject(AuthService);
 
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -32,14 +36,22 @@ export class Login {
 
     const { email, password } = this.form.value;
 
-    setTimeout(() => {
-      this.submitting = false;
-
-      if (email === 'admin@example.com' && password === 'password') {
-        this.router.navigate(['/']);
-      } else {
-        this.errorMessage = 'Invalid email or password';
-      }
-    }, 1000);
+    this.http
+      .post<ApiResponse>('http://localhost:3000/api/login', { email, password })
+      .subscribe({
+        next: (res) => {
+          this.auth.setToken(res.token);  
+          this.router.navigate(['/teacher']);
+        },
+        error: (err) => {
+          console.error('Error:', err);
+          this.errorMessage = 'Invalid email or password';
+        },
+        complete: () => (this.submitting = false),
+      });
   }
 }
+
+type ApiResponse = {
+  token: string;
+};

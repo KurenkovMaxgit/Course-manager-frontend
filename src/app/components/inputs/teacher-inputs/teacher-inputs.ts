@@ -1,6 +1,7 @@
-import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Form } from '../../form/form';
 import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -50,7 +51,7 @@ export class TeacherInputs {
     }
   }
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private location: Location) {
     this.activatedRoute.params.subscribe((params) => {
       this.id = params['id'];
     });
@@ -71,7 +72,10 @@ export class TeacherInputs {
           experience: res.experience,
         });
       },
-      error: (err) => console.error('Error:', err),
+      error: (err) => {
+        console.error('Error:', err);
+        this.location.back();
+      },
     });
   }
 }

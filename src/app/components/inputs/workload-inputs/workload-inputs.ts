@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { Form } from '../../form/form';
 import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,10 +12,18 @@ import { Group } from '../../../models/group.model';
 import { Subject } from '../../../models/subject.model';
 import { LessonType } from '../../../models/lesson-type.model';
 import { CommonModule } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-workload-inputs',
-  imports: [Form, MatInputModule, ReactiveFormsModule, MatSelectModule, CommonModule],
+  imports: [
+    Form,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    CommonModule,
+    MatAutocompleteModule,
+  ],
   templateUrl: './workload-inputs.html',
   styleUrl: './workload-inputs.scss',
 })
@@ -34,11 +43,19 @@ export class WorkloadInputs {
     group: new FormControl(this.workload()?.group._id, Validators.required),
     subject: new FormControl(this.workload()?.subject._id, Validators.required),
     type: new FormControl(this.workload()?.type._id, Validators.required),
-    hours: new FormControl(this.workload()?.hours, [Validators.required, Validators.maxLength(4)]),
-    price: new FormControl(this.workload()?.price, [Validators.required, Validators.maxLength(10)]),
+    hours: new FormControl(this.workload()?.hours, [
+      Validators.required,
+      Validators.maxLength(4),
+      Validators.min(0),
+    ]),
+    price: new FormControl(this.workload()?.price, [
+      Validators.required,
+      Validators.maxLength(10),
+      Validators.min(0),
+    ]),
   });
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private location: Location) {
     this.activatedRoute.params.subscribe((params) => {
       this.id = params['id'];
     });
@@ -82,7 +99,10 @@ export class WorkloadInputs {
           price: res.price,
         });
       },
-      error: (err) => console.error('Error:', err),
+      error: (err) => {
+        console.error('Error:', err);
+        this.location.back();
+      },
     });
   }
 }
