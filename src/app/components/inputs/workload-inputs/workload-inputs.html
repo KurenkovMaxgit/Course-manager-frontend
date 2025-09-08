@@ -12,7 +12,7 @@
       <mat-label>Group</mat-label>
       <mat-select formControlName="group">
         @for(group of groups() ?? []; track $index){
-        <mat-option [value]="group._id"> {{ group.faculty }} </mat-option>
+        <mat-option [value]="group._id"> {{ group.specialty }}, {{ group.faculty }} </mat-option>
         }
       </mat-select>
     </mat-form-field>
@@ -32,16 +32,18 @@
         }
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="input">
-      <mat-label>Time</mat-label>
-      <input matInput type="number" formControlName="hours" />
-      <span matTextSuffix>hours</span>
-    </mat-form-field>
-    <mat-form-field class="input">
-      <mat-label>Price</mat-label>
-      <input matInput type="number" class="price-input" formControlName="price" />
-      <span matTextPrefix>$&nbsp;</span>
-      <span matTextSuffix>.00</span>
-    </mat-form-field>
+    <div class="inline-fields">
+      <mat-form-field class="input">
+        <mat-label>Time</mat-label>
+        <input matInput type="number" class="price-input" formControlName="hours" />
+        <span matTextSuffix>hours/week</span>
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" class="price-input" formControlName="price" />
+        <span matTextSuffix>$</span>
+      </mat-form-field>
+    </div>
   </form>
 </app-form>

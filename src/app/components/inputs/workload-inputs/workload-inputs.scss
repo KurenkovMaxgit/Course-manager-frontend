@@ -8,3 +8,13 @@ mat-form-field {
 .price-input {
   text-align: right;
 }
+
+.inline-fields {
+  display: flex;
+  gap: 16px;
+}
+
+.inline-fields .mat-form-field {
+  flex: 1;
+  min-width: 120px;
+}

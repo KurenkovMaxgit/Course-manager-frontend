@@ -2,10 +2,11 @@
   <button type="button" (click)="drawer.toggle()" mat-icon-button class="icon">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>My App</span>
+  <span>Course manager</span>
   <span class="spacer"></span>
 
-  <button mat-icon-button class="icon">
+  <button mat-button class="icon" (click)="logout()">
+    Log out
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
@@ -16,7 +17,7 @@
       <nav>
         <ul>
           <li routerLink="/teacher">
-            <a mat-list-item><h4>Teacher</h4></a>
+            <a mat-list-item><h4>Teachers</h4></a>
           </li>
           <li routerLink="/group">
             <a mat-list-item><h4>Groups</h4></a>
