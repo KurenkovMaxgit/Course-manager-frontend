@@ -1,59 +1,45 @@
-# CourceManager
+# Course-manager-frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
+This is the frontend part of the "Course Manager" project. It provides the user interface for managing courses, likely interacting with a backend system for data storage.
 
-## Development server
+<img width="1050" height="648" alt="image" src="https://github.com/user-attachments/assets/2fc17716-7e8e-44ca-9194-50843247a240" />
 
-To start a local development server, run:
+## Project Summary
 
-```bash
-ng serve
-```
+The "Course Manager" frontend enables users to view, add, update, and manage workloads through a web-based interface. It is designed responsive, making course management efficient and user-friendly.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Tech stack
+1. Node.js
+3. TypeScript
+4. Angular 20
+5. Angular Material
 
-## Code scaffolding
+## Getting Started
+### Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- [Node.js](https://nodejs.org/) (ensure you have the required version)
+- [npm](https://www.npmjs.com/)
+- A running [backend](https://github.com/KurenkovMaxgit/Course-manager-backend) server
 
-```bash
-ng generate component component-name
-```
+To set up and run the project locally, follow these steps:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/KurenkovMaxgit/Course-manager-frontend.git
+   cd Course-manager-frontend
+   
 
-```bash
-ng generate --help
-```
+2. Install dependencies:
+   ```sh
 
-## Building
+   npm install
+   
 
-To build the project run:
+3. Run the development server:
+   ```sh
+   
+   npm start
+   
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+5. Open the app:
+   Visit [http://localhost:4200](http://localhost:4200) in your browser to use the application.
